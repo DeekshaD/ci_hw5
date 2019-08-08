@@ -1,0 +1,55 @@
+---
+title: "Homework 4"
+author: "Ankur Bambharoliya and Deeksha Doddahonnaiah"
+date: "08/07/2019"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    number_sections: yes
+    self_contained: yes
+    toc: yes
+    toc_float: yes
+header-includes:
+- \usepackage{amsmath}
+- \usepackage{soul}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# CS7290 Causal Modeling in Machine Learning: Homework 3
+
+```{r}
+library(png)
+library(tidyverse)
+library(reticulate)
+library(ggplot2)
+
+use_python("/home/d/anaconda3/bin/python3.6")
+use_condaenv("ci", required = TRUE)
+```
+
+## 1. Necessity and Sufficiency
+
+### 1.1. Probability of Neccessity and Sufficiency
+
+### 1.2 Probability of Neccessity and Sufficiency, and Identifiability
+
+1.2.1
+\begin{align*}
+PNS = P(y|x) - P(y|x^\prime') \\
+=0.9198813 - 0.1992071 =  0.7206742 \\
+\end{align*}
+
+1.2.2
+\begin{align*}
+PN= \frac{PNS} {P(y|x)} \\
+=0.7834426 \\
+\end{align*}
+
+\begin{align*}
+PS= \frac{PNS} {P(y^\prime|x^\prime')} \\
+=0.899941 \\
+\end{align*}
