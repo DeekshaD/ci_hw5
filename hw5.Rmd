@@ -19,7 +19,7 @@ header-includes:
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-# CS7290 Causal Modeling in Machine Learning: Homework 3
+# CS7290 Causal Modeling in Machine Learning: Homework 4
 
 ```{r}
 library(png)
@@ -35,12 +35,43 @@ use_condaenv("ci", required = TRUE)
 
 ### 1.1. Probability of Neccessity and Sufficiency
 
+1.1.1 
+```{r}
+X = c(1,0, 1, 0, 1, 0, 1, 0)
+Q = c(0, 0, 1, 1, 0, 0, 1, 1)
+X_and_Q = as.integer(X&Q)
+ny = c(0, 0, 0, 0, 1, 1, 1, 1)
+Y = as.integer(X_and_Q|ny)
+print(data.frame(X,Q, ny, Y))
+print("After Intervention we have:")
+X_new = c(0,0,0,0,0,0,0,0)
+Y_new = c(0,0,0,0,1,1,1,1)
+print(data.frame(X_new, X, Q, ny, Y, Y_new))
+
+```
+
+From the above table when $X=1$ and $Y=1$, we get the following values  
+$n_y = (0,1,1), n_x = 1, n_q = (1, 0, 0)$  
+  
+After intervention on X $do(X=0)$, $Y=0|do(X=0),X=1, Y=1)$ is satisfied by the following exogenous variables:  
+$n_y = 0$, and $n_q = 1$  
+  
+$P(Y_0=0|X=1, Y=1) = 0.8*0.9 = 0.72$  
+
+1.1.2  
+
+$n_y = (0,0), n_x = 0, n_q = (0, 1)$  
+After intervention on X, $do(X=1)$  
+$n_y = 0, and n_q = 1$  
+$P(Y_1=1|X=0, Y=0) = 0.8*0.9 = 0.72$  
+
 ### 1.2 Probability of Neccessity and Sufficiency, and Identifiability
 
 1.2.1
 \begin{align*}
-PNS = P(y|x) - P(y|x^\prime') \\
-=0.9198813 - 0.1992071 =  0.7206742 \\
+PNS = P(y|x) - P(y|x^\prime) \\
+0.9198813 - 0.1992071
+0.7206742 \\
 \end{align*}
 
 1.2.2
@@ -50,6 +81,10 @@ PN= \frac{PNS} {P(y|x)} \\
 \end{align*}
 
 \begin{align*}
-PS= \frac{PNS} {P(y^\prime|x^\prime')} \\
+PS= \frac{PNS} {P(y^\prime|x^\prime)} \\
 =0.899941 \\
 \end{align*}
+
+## 2. Mediation
+
+## 3. Effect of the treatment on the treated 
